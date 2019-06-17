@@ -15,3 +15,4 @@ massive(CONNECTION_STRING).then(dbInstance => {
 })
 
 app.get('/api/westenscale', scaleController.getScale)
+app.get('/api/5episodes', scaleController.get5Episodes)

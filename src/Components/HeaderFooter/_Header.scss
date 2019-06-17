@@ -20,7 +20,29 @@
   justify-content: space-between;
   margin-left: 25px;
 }
-.navbar>h1:hover{
+
+.dropdown{
+  position: relative;
+}
+
+.navlink:hover{
   color: white;
   cursor: pointer;
 }
+
+.dropdown:hover .dropdown-content{
+  display: block;
+}
+
+.dropdown-content{
+  display: none;
+  position: absolute;
+  width: 300px;
+  border: 1px solid black;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 10px;
+  h1{
+    margin: 5px 0;
+  }
+}
+
