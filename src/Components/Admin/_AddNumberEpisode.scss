@@ -1,0 +1,17 @@
+.AddNumberEpisode{
+  width: 100vw;
+  height: calc(100vh - 100px);
+  background: $offwhite;
+  display: flex;
+  justify-content: center;
+}
+
+.column{
+  height: 100%;
+  width: 33%;
+  border-left: 1px solid $red;
+  border-radius: 1px solid $red;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}

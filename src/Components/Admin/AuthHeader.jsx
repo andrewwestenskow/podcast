@@ -1,6 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import axios from 'axios'
+import BiggerMovies from '../../Assets/bigger_movies.png'
 
 const AuthHeader = (props) => {
 
@@ -11,7 +12,7 @@ const AuthHeader = (props) => {
 
   return(
     <header className='AuthHeader'>
-      Auth Header
+      <img src={BiggerMovies} alt="We watch podcast" className='header-logo'/>
       <button onClick={logout}>Logout</button>
     </header>
   )

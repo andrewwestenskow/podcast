@@ -6,6 +6,7 @@ const app = express()
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const scaleController = require('./controllers/scaleController')
 const userController = require('./controllers/usersController')
+const movieController = require('./controllers/movieController')
 
 
 app.use(express.json())
@@ -30,3 +31,5 @@ app.post('/auth/register', userController.createUser)
 app.post('/auth/login', userController.login)
 app.delete('/auth/logout', userController.logout)
 app.get('/auth/users', userController.checkLogin)
+app.get('/movies', movieController.getMovies)
+app.get('/details', movieController.getDetails)

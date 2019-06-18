@@ -1,5 +1,8 @@
 .AuthHeader{
   width: 100vw;
   height: 100px;
-  background: $primaryBlue
+  background: $primaryBlue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
