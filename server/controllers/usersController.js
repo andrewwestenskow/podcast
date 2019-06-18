@@ -59,5 +59,20 @@ module.exports = {
     } catch (error) {
       res.status(500).send('Error logging in')
     }
+  },
+  checkLogin: async (req, res) => {
+    const user = req.session.user
+
+    if(user){
+      return res.status(200).send('okay')
+    } else {
+      return res.status(200).send('nope')
+    }
+  },
+
+  logout: (req, res) => {
+    req.session.destroy()
+
+    res.sendStatus(200)
   }
 }

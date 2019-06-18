@@ -3,18 +3,12 @@ import React from 'react'
 import Home from './Components/Home/Home'
 import Header from './Components/HeaderFooter/Header'
 import Login from './Components/Admin/Login'
-import AuthHeader from './Components/Admin/AuthHeader'
+import AuthDashboard from './Components/Admin/AuthDashboard'
 
 export default(
   <Switch>
     <Route path='/login' component={Login}/>
-    <Route exact path='/admin' component={()=>(
-      <AuthHeader>
-        <Switch>
-          
-        </Switch>
-      </AuthHeader>
-    )}/>
+    <Route path='/admin/dashboard' component={AuthDashboard}/>
     <Route path='/' component={() => (
       <Header>
         <Switch>
