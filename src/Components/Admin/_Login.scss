@@ -1,0 +1,24 @@
+.Login{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $secondaryBlue;
+  flex-direction: column;
+}
+
+.auth-logo{
+  width: 100px
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: $tertiaryBlue;
+  border: 5px solid black;
+  height: 25vh;
+  width: 25vw;
+}
