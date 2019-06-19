@@ -4,6 +4,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import Lottie from 'react-lottie'
 import animationData from '../../Assets/Lotties/40-loading.json'
+import data2 from '../../Assets/Lotties/291-searchask-loop.json'
 import {Link} from 'react-router-dom'
 
 class AuthDashboard extends Component {
@@ -14,7 +15,8 @@ class AuthDashboard extends Component {
     results: [],
     showResults: false,
     displayNumber: 0,
-    episodeNumber: null
+    episodeNumber: null,
+    searching: false
   }
 
   async componentDidMount() {
@@ -36,12 +38,16 @@ class AuthDashboard extends Component {
 
   searchMovies = async (e) => {
     e.preventDefault()
+    this.setState({
+      searching: true
+    })
     let searchString = this.state.movieTitle.split(' ').join('+')
     let results = await axios.get(`/movies?searchString=${searchString}`)
     this.setState({
       results: results.data.results,
       movieTitle: '',
-      showResults: true
+      showResults: true,
+      searching: false
     })
   }
 
@@ -68,6 +74,15 @@ class AuthDashboard extends Component {
       }
     }
 
+    const searchOptions = {
+      loop: true,
+      autoplay: true,
+      animationData: data2,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    }
+
     return (
       <>
         {!this.state.loading ? <>
@@ -77,8 +92,11 @@ class AuthDashboard extends Component {
               <h1>Add episode</h1>
               <form
                 onSubmit={(e) => this.searchMovies(e)} className='new-movie-form'>
-                <input autoComplete='off' onChange={(e) => this.handleChange(e)} value={this.state.movieTitle} type="text" name='movieTitle' />
-                <button type='submit' >Search</button>
+                {this.state.searching ? 
+                  <Lottie options={searchOptions} width={50} height={50}/>
+                : 
+                <><input autoComplete='off' onChange={(e) => this.handleChange(e)} value={this.state.movieTitle} type="text" name='movieTitle' />
+                <button type='submit' >Search</button></>}
               </form>
               {this.state.showResults &&
                 <div className="results-hold">
