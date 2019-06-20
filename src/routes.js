@@ -5,12 +5,14 @@ import Header from './Components/HeaderFooter/Header'
 import Login from './Components/Admin/Login'
 import AuthDashboard from './Components/Admin/AuthDashboard'
 import AddNumberEpisode from './Components/Admin/AddNumberEpisode'
+import AddSpecialEpisode from './Components/Admin/AddSpecialEpisode'
 
 export default(
   <Switch>
     <Route path='/login' component={Login}/>
     <Route path='/admin/dashboard' component={AuthDashboard}/>
     <Route path='/admin/addepisode/:id' component={AddNumberEpisode}/>
+    <Route path='/admin/specialepisode' component={AddSpecialEpisode}/>
     <Route path='/' component={() => (
       <Header>
         <Switch>

@@ -115,6 +115,9 @@ class AuthDashboard extends Component {
                     </div>
                   </form></div>}
             </div>
+            <Link to='/admin/specialepisode'><div style={{cursor: 'pointer'}} className="dash-section">
+            <h1>Add Special Episode</h1>
+            </div></Link>
             <Link to='/admin/newpost'><div style={{cursor: 'pointer'}} className="dash-section">
             <h1>Add blog post</h1>
             </div></Link>
