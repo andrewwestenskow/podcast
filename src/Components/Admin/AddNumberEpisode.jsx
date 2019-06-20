@@ -116,7 +116,12 @@ class AddNumberEpisode extends Component {
       w: this.state.w
     }
 
-    await axios.post('/episode/numbered', movie)
+    let result = await axios.post('/episode/numbered', movie)
+
+    if(result.data === 'okay'){
+      alert('Success')
+      this.props.history.push('/admin/dashboard')
+    }
   }
 
   render(){

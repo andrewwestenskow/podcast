@@ -2,10 +2,12 @@ module.exports={
   addNumberedEpisode: async (req, res) => {
     const db = req.app.get('db')
 
+    const {title, episodeNumber, a, b, s, w} = req.body
+
     let details = JSON.stringify(req.body)
 
-    let obj = JSON.parse(details)
+    await db.createNumberedEpisode(+episodeNumber, title, details, +b, +s, +a, +w)
 
-    console.log(obj)
+    res.status(200).send('okay')
   }
 }
