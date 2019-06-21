@@ -1,0 +1,1 @@
+select * from episodes where episode_id = ($1)

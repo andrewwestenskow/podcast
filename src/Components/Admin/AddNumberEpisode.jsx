@@ -98,8 +98,8 @@ class AddNumberEpisode extends Component {
     const {details} = this.state
     const movie = {
       title: details.title,
-      release: details.release_date,
-      runtime: moment(details.release_date).format('MMMM DD, YYYY'),
+      release: moment(details.release_date).format('MMMM DD, YYYY'),
+      runtime: details.runtime,
       crew: this.state.crew,
       cast: this.state.cast,
       synopsis: details.overview,

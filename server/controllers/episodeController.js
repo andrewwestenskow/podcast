@@ -21,5 +21,19 @@ module.exports={
     await db.createSpecialEpisode(episodeNumber, title, details)
 
     res.status(200).send('okay')
+  },
+
+  getEpisode: async (req, res) => {
+    const db = req.app.get('db')
+
+    const {id} = req.query
+
+    const data = await db.getEpisode([id])
+
+    let details = JSON.parse(data[0].details)
+
+    data[0].details = details
+
+    res.status(200).send(data[0])
   }
 }
