@@ -1,8 +1,15 @@
-.NumberedEpisode{
+.Loading{
   background: $offwhite;
   min-height: calc(100vh - 100px);
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.NumberedEpisode{
+  background: $offwhite;
+  margin-top: 100px;
+  height: calc(100vh - 100px);
+  width: 100vw;
 }

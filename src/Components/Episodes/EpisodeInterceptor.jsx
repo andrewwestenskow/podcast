@@ -45,7 +45,7 @@ class EpisodeInterceptor extends Component {
 
     return (
       <>
-        {this.state.loading ? <div className="NumberedEpisode">
+        {this.state.loading ? <div className="Loading">
           <Lottie height={200} width={200} options={defaultOptions}/>
         </div>
           : <>
