@@ -7,10 +7,17 @@
   align-items: center;
 }
 
+.movie-data-hold{
+  margin-top: 25px;
+  padding-left: 25px;
+  width: 50%;
+}
+
 .white-box{
-  background: rgba(255, 255, 255, 0.541);
+  background: rgba(255, 255, 255, 0.65);
   width: 100%;
   height: 100%;
+  display: flex;
 }
 
 .NumberedEpisode{
@@ -18,6 +25,7 @@
   margin-top: 100px;
   height: calc(100vh - 100px);
   max-width: 100vw;
+  
 }
 
 .display-poster{
@@ -29,11 +37,26 @@
 }
 
 .title-hold{
+  margin-left: 25px;
+  width: 50%;
+  h1{
+    font-size: 3.5rem
+  }
+  p{
+    font-size: 1.5rem;
+  }
+}
+
+.episode-info-hold{
+  margin-top: 25px;
+  padding-right: 25px;
   width: 50%;
 }
 
-
-
-iframe{
-  width: 25%;
+.scores-hold{
+  display: flex;
+  p{
+    padding: 0 10px;
+    margin: 0
+  };
 }
