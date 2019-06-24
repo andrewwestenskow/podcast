@@ -7,9 +7,33 @@
   align-items: center;
 }
 
+.white-box{
+  background: rgba(255, 255, 255, 0.541);
+  width: 100%;
+  height: 100%;
+}
+
 .NumberedEpisode{
   background: $offwhite;
   margin-top: 100px;
   height: calc(100vh - 100px);
-  width: 100vw;
+  max-width: 100vw;
+}
+
+.display-poster{
+  width: 250px;
+}
+
+.poster-title-hold{
+  display: flex;
+}
+
+.title-hold{
+  width: 50%;
+}
+
+
+
+iframe{
+  width: 25%;
 }

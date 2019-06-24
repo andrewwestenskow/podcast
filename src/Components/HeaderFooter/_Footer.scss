@@ -2,14 +2,9 @@
   width: 100vw;
   height: 50px;
   background: $primaryBlue;
-  position: absolute;
-  bottom: 0;
   background-position: center;
   background-size: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
-.white-box{
-  background: rgba(255, 255, 255, 0.541);
-  width: 100%;
-  height: 100%;
-}
