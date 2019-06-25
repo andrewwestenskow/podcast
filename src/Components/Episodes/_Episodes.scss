@@ -27,10 +27,12 @@
   max-width: 100vw;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover
 }
 
 .display-poster{
-  width: 250px;
+  width: 250px;  
+  height: 398px;
 }
 
 .poster-title-hold{
@@ -41,10 +43,12 @@
   margin-left: 25px;
   width: 50%;
   h1{
-    font-size: 3.5rem
+    font-size: 3.5rem;
+    margin-top: 0;
+    margin-bottom: 5px;
   }
   p{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 

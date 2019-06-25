@@ -30,7 +30,8 @@ const NumberedEpisode = (props) => {
         <div className="movie-data-hold">
           <div className="poster-title-hold">
             <img className='display-poster' src={data.details.poster} alt="" />
-            <div className='title-hold'><h1>{data.title}</h1>
+            <div className='title-hold'>
+              <h1>{data.title}</h1>
               <div className="black-line"></div>
               <h2>by: {director}</h2>
               <p>{data.details.synopsis}</p>
