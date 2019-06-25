@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactHTMLParser from 'react-html-parser'
 import YouTube from 'react-youtube'
+import Footer from '../HeaderFooter/Footer'
 
 const NumberedEpisode = (props) => {
   const { data } = props
@@ -48,8 +49,8 @@ const NumberedEpisode = (props) => {
           </div>
         </div>
         <div className="episode-info-hold">
-          <YouTube videoId={data.details.trailer} />
           {ReactHTMLParser(data.details.player)}
+          <YouTube videoId={data.details.trailer} />
           <div className="westenscale-hold">
             <h1>Overall: {data.details.w}</h1>
             <div className="scores-hold">
@@ -67,6 +68,7 @@ const NumberedEpisode = (props) => {
             }</div>
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }

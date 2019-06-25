@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Footer from './Footer'
 import BiggerMovies from '../../Assets/bigger_movies.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -60,10 +59,9 @@ class Header extends Component {
             </Link>
           </nav>
         </header>
-        <div>
+        <>
           {this.props.children}
-        </div>
-        <Footer />
+        </>
       </>
     )
   }
