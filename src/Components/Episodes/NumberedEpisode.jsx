@@ -6,9 +6,9 @@ import Footer from '../HeaderFooter/Footer'
 const NumberedEpisode = (props) => {
   const { data } = props
 
+  const crew = []
+
   let director
-  let cinematographer
-  let score
 
   data.details.crew.forEach(element => {
     switch (element.job) {
@@ -19,14 +19,8 @@ const NumberedEpisode = (props) => {
           director = element.name
         }
         break;
-      case 'Director of Photography':
-        cinematographer = element.name
-        break;
-      case 'Original Music Composer':
-        score = element.name
-        break;
       default:
-        console.log('none')
+        crew.push(element)
     }
   })
 
@@ -36,23 +30,45 @@ const NumberedEpisode = (props) => {
         <div className="movie-data-hold">
           <div className="poster-title-hold"><img className='display-poster' src={data.details.poster} alt="" />
             <div className='title-hold'><h1>{data.title}</h1>
+              <div className="black-line"></div>
               <h2>by: {director}</h2>
               <p>{data.details.synopsis}</p>
             </div>
           </div>
-          <p>Released {data.details.runtime}</p>
-          <p>{data.details.runtime} minutes</p>
+          <p className='release'>Released {data.details.release}</p>
+          <p className='release'>{data.details.runtime} minutes</p>
 
           <div className="cast-crew-hold">
-            <p>Photography by: {cinematographer}</p>
-            <p>Original score by: {score}</p>
+          <h1>Cast:</h1>
+            {data.details.cast.map(element => {
+              return <div className='cast-member' key={element.credit_id}>
+                <img src={`https://image.tmdb.org/t/p/w185/${element.profile_path}`} alt="" />
+                <div className="cast-member-name">
+                  <p className='name'>{element.name}</p>
+                  <div className="black-line"></div>
+                  <p className='character'>{element.character}</p>
+                </div>
+              </div>
+            })}
+            <h1>Crew:</h1>
+            {data.details.crew.map(element => {
+              return <div key={element.credit_id} className='cast-member'>
+                <img src={`https://image.tmdb.org/t/p/w185/${element.profile_path}`} alt="" />
+                <div className="cast-member-name">
+                  <p className='name'>{element.name}</p>
+                  <div className="black-line"></div>
+                  <p className='character'>{element.job}</p>
+                </div>
+              </div>
+            })}
+            
           </div>
         </div>
         <div className="episode-info-hold">
+          <h1 className='left'>Listen Now: </h1>
           {ReactHTMLParser(data.details.player)}
-          <YouTube videoId={data.details.trailer} />
           <div className="westenscale-hold">
-            <h1>Overall: {data.details.w}</h1>
+            <h1>On the Westenscale: {data.details.w}</h1>
             <div className="scores-hold">
               <p>Andrew: {data.details.a}</p>
               <p>
@@ -65,10 +81,13 @@ const NumberedEpisode = (props) => {
             <h1>Reviewed:</h1>
             <h3>By {data.details.author}</h3>
             {ReactHTMLParser(data.details.review)
-            }</div>
+            }
+          </div>
+          <h1 className='left'>Trailer: </h1>
+          <YouTube videoId={data.details.trailer} />
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
