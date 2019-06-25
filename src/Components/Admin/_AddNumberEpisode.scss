@@ -16,6 +16,14 @@
   flex-direction: column;
 }
 
+.crew-list{
+  li{
+    list-style-type: none;
+  }
+  max-height: 400px;
+  overflow-y: scroll
+}
+
 .preview-poster{
   width: 20%
 }

@@ -36,16 +36,9 @@ class AddNumberEpisode extends Component {
     const { id } = this.props.match.params
     let results = await axios.get(`/details?id=${id}`)
     // eslint-disable-next-line
-    const crew = results.data.credits.crew.filter(element => {
-      if (element.job === 'Director' || element.job === 'Writer' || element.job === 'Director of Photography' || element.job === 'Original Music Composer') {
-        return element
-      }
-    })
-    const cast = results.data.credits.cast.splice(0, 5)
+    
     this.setState({
       details: results.data,
-      crew: crew,
-      cast: cast,
       poster: `https://image.tmdb.org/t/p/original/${results.data.images.posters[this.state.posterNumber].file_path}`,
       backdrop: `https://image.tmdb.org/t/p/original/${results.data.images.backdrops[this.state.backdropNumber].file_path}`,
       trailer: results.data.videos.results[0].key
@@ -100,9 +93,50 @@ class AddNumberEpisode extends Component {
     })
   }
 
+  handleCastCheck = (element) => {
+    let exists = this.state.cast.findIndex(person => {
+      return element.credit_id === person.credit_id
+    })
+
+    if(exists === -1) {
+      let cast = this.state.cast
+      cast.push(element)
+      this.setState({
+        cast: cast
+      })
+    } else {
+      let cast = this.state.cast
+      cast.splice(exists, 1)
+      this.setState({
+        cast: cast
+      })
+    }
+  }
+
+  handleCrewCheck = (element) => {
+    let exists = this.state.crew.findIndex(person => {
+      return element.credit_id === person.credit_id
+    })
+
+    if(exists === -1) {
+      let crew = this.state.crew
+      crew.push(element)
+      this.setState({
+        crew: crew
+      })
+    } else {
+      let crew = this.state.crew
+      crew.splice(exists, 1)
+      this.setState({
+        crew: crew
+      })
+    }
+  }
+
   createEpisode = async (e) => {
     e.preventDefault()
     const { details } = this.state
+
     const movie = {
       title: details.title,
       release: moment(details.release_date).format('MMMM DD, YYYY'),
@@ -155,15 +189,18 @@ class AddNumberEpisode extends Component {
               <p>{moment(details.release_date).format('MMMM DD, YYYY')}</p>
               <p>Runtime: {details.runtime} minutes</p>
               <p>Crew:</p>
-              <ul>
-                {this.state.crew.map(element => {
-                  return <li key={element.credit_id}>{element.job}: {element.name}</li>
+              <ul className='crew-list'>
+                {this.state.details.credits.crew.map(element => {
+                  return <li key={element.credit_id}>
+                  <input onChange={()=>this.handleCrewCheck(element)} type="checkbox"/>
+                  {element.job}: {element.name}</li>
                 })}
               </ul>
               <p>Cast:</p>
-              <ul>
-                {this.state.cast.map(element => {
+              <ul className='crew-list'>
+                {this.state.details.credits.cast.map(element => {
                   return <li key={element.credit_id}>
+                    <input onChange={()=>this.handleCastCheck(element)} type="checkbox"/>
                     {element.character}: {element.name}
                   </li>
                 })}
@@ -171,6 +208,7 @@ class AddNumberEpisode extends Component {
               <p>Synopsis: {details.overview}</p>
 
             </section>
+
             <section className="column">
               <h1>Select a poster</h1>
               <div className='preview-poster-hold'>
@@ -192,12 +230,13 @@ class AddNumberEpisode extends Component {
                 <YouTube className='trailer-preview' videoId={this.state.trailer} />
               </div>
             </section>
+
             <section className="column">
               <h1>Episode information</h1>
               <form onSubmit={(e) => this.createEpisode(e)} className="episode-info">
                 <p>Episode Number</p>
                 <input onChange={(e) => this.handleChange(e)} name='episodeNumber' type="number" />
-                <p>YouTube Link</p>
+                <p>Player HTML</p>
                 <input onChange={(e) => this.handleChange(e)} name='player' type="text" />
                 <p>Westenscale</p>
                 <div className="westenscale-input">
