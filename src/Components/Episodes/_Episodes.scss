@@ -48,15 +48,28 @@
 }
 
 .episode-info-hold{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 25px;
   padding-right: 25px;
   width: 50%;
 }
 
-.scores-hold{
-  display: flex;
-  p{
-    padding: 0 10px;
-    margin: 0
-  };
+
+
+.westenscale-hold{
+  text-align: center;
+  .scores-hold{
+    justify-content: center;
+    display: flex;
+    p{
+      padding: 0 10px;
+      margin: 0
+    };
+  }
+}
+
+.review-hold{
+  align-self: flex-start;
 }

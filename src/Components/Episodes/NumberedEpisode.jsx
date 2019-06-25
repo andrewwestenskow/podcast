@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactHTMLParser from 'react-html-parser'
+import YouTube from 'react-youtube'
 
 const NumberedEpisode = (props) => {
   const { data } = props
@@ -38,25 +39,32 @@ const NumberedEpisode = (props) => {
               <p>{data.details.synopsis}</p>
             </div>
           </div>
-          
-          <p>Photography by: {cinematographer}</p>
-          <p>Original score by: {score}</p>
-        </div>
-        <div className="episode-info-hold">
-        {ReactHTMLParser(data.details.player)}
-        <div className="westenscale-hold">
-          <h1>Overall: {data.details.w}</h1>
-          <div className="scores-hold">
-            <p>Andrew: {data.details.a}</p> 
-            <p>
-              Becca: {data.details.b}
-            </p>
-            <p>Syd: {data.details.s}</p>
+          <p>Released {data.details.runtime}</p>
+          <p>{data.details.runtime} minutes</p>
+
+          <div className="cast-crew-hold">
+            <p>Photography by: {cinematographer}</p>
+            <p>Original score by: {score}</p>
           </div>
         </div>
-        <h1>Reviewed:</h1>
-        <h3>By {data.details.author}</h3>
-        {ReactHTMLParser(data.details.review)}
+        <div className="episode-info-hold">
+          <YouTube videoId={data.details.trailer} />
+          {ReactHTMLParser(data.details.player)}
+          <div className="westenscale-hold">
+            <h1>Overall: {data.details.w}</h1>
+            <div className="scores-hold">
+              <p>Andrew: {data.details.a}</p>
+              <p>
+                Becca: {data.details.b}
+              </p>
+              <p>Syd: {data.details.s}</p>
+            </div>
+          </div>
+          <div className="review-hold">
+            <h1>Reviewed:</h1>
+            <h3>By {data.details.author}</h3>
+            {ReactHTMLParser(data.details.review)
+            }</div>
         </div>
       </div>
     </div>

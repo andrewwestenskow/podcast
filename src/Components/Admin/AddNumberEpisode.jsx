@@ -106,7 +106,7 @@ class AddNumberEpisode extends Component {
       poster: `https://image.tmdb.org/t/p/original/${details.images.posters[this.state.posterNumber].file_path}`,
       backdrop: `https://image.tmdb.org/t/p/original/${details.images.backdrops[this.state.backdropNumber].file_path}`,
       episodeNumber: this.state.episodeNumber,
-      youTubeLink: this.state.youTubeLink,
+      player: this.state.player,
       review: this.state.review,
       author: this.state.author,
       trailer: this.state.trailer,
@@ -191,7 +191,7 @@ class AddNumberEpisode extends Component {
             <p>Episode Number</p>
             <input onChange={(e)=>this.handleChange(e)} name='episodeNumber' type="number"/>
             <p>YouTube Link</p>
-            <input onChange={(e)=>this.handleChange(e)} name='youTubeLink' type="text"/>
+            <input onChange={(e)=>this.handleChange(e)} name='player' type="text"/>
             <p>Westenscale</p>
             <div className="westenscale-input">
               <p>Andrew</p>
