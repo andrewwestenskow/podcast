@@ -74,14 +74,14 @@ class AddNumberEpisode extends Component {
     let num = this.state.posterNumber
     this.setState({
       posterNumber: num += 1,
-      poster: `https://image.tmdb.org/t/p/original/${this.state.details.images.posters[this.state.posterNumber].file_path}`
+      poster: `https://image.tmdb.org/t/p/original/${this.state.details.images.posters[this.state.posterNumber + 1].file_path}`
     })
   }
   posterDown = () => {
     let num = this.state.posterNumber
     this.setState({
       posterNumber: num -= 1,
-      poster: `https://image.tmdb.org/t/p/original/${this.state.details.images.posters[this.state.posterNumber].file_path}`
+      poster: `https://image.tmdb.org/t/p/original/${this.state.details.images.posters[this.state.posterNumber - 1].file_path}`
     })
   }
 
@@ -89,14 +89,14 @@ class AddNumberEpisode extends Component {
     let num = this.state.backdropNumber
     this.setState({
       backdropNumber: num += 1,
-      backdrop: `https://image.tmdb.org/t/p/original/${this.state.details.images.backdrops[this.state.backdropNumber].file_path}`
+      backdrop: `https://image.tmdb.org/t/p/original/${this.state.details.images.backdrops[this.state.backdropNumber + 1].file_path}`
     })
   }
   backdropDown = () => {
     let num = this.state.backdropNumber
     this.setState({
       backdropNumber: num -= 1,
-      backdrop: `https://image.tmdb.org/t/p/original/${this.state.details.images.backdrops[this.state.backdropNumber].file_path}`
+      backdrop: `https://image.tmdb.org/t/p/original/${this.state.details.images.backdrops[this.state.backdropNumber - 1].file_path}`
     })
   }
 
@@ -180,7 +180,7 @@ class AddNumberEpisode extends Component {
                 <input type="text" name='poster' value={this.state.poster} onChange={(e) => this.handleChange(e)} />
               </div>
               <p>Select a backdrop</p>
-              <div className='preview-backdrop-hold'>
+              <div className='preview-poster-hold'>
                 <img className='preview-backdrop' src={this.state.backdrop} alt={`${details.title} backdrop`} />
                 <button onClick={this.backdropDown} disabled={this.state.backdropNumber === 0}>Previous</button>
                 <button onClick={this.backdropUp} disabled={this.state.backdropNumber === (details.images.backdrops.length - 1)}>Next</button>

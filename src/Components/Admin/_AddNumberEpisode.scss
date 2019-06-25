@@ -48,3 +48,11 @@
     height: 15px;
   }
 }
+
+.preview-poster-hold{
+  display: flex;
+  flex-direction: column;
+  input{
+    width: 100%
+  }
+}

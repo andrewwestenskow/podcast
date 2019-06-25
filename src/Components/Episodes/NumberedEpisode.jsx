@@ -28,7 +28,8 @@ const NumberedEpisode = (props) => {
     <div className="NumberedEpisode" style={{ backgroundImage: `url(${data.details.backdrop})` }}>
       <div className="white-box">
         <div className="movie-data-hold">
-          <div className="poster-title-hold"><img className='display-poster' src={data.details.poster} alt="" />
+          <div className="poster-title-hold">
+            <img className='display-poster' src={data.details.poster} alt="" />
             <div className='title-hold'><h1>{data.title}</h1>
               <div className="black-line"></div>
               <h2>by: {director}</h2>
