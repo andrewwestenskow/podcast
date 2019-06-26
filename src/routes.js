@@ -8,6 +8,7 @@ import AddNumberEpisode from './Components/Admin/AddNumberEpisode'
 import AddSpecialEpisode from './Components/Admin/AddSpecialEpisode'
 import EpisodeInterceptor from './Components/Episodes/EpisodeInterceptor';
 import EditIntercept from './Components/Admin/EditIntercept';
+import EpisodeList from './Components/EpisodeList/EpisodeList'
 
 export default(
   <Switch>
@@ -20,6 +21,7 @@ export default(
       <Header>
         <Switch>
           <Route exact path='/' component={Home}/>
+          <Route exact path='/episodes/list' component={EpisodeList}/>
           <Route path = '/episodes/:episode_id' component={EpisodeInterceptor}/>
         </Switch>
       </Header>
