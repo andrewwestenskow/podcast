@@ -88,3 +88,7 @@ a{
 		@include scrollbar;
 		line-height: 125%;
 	}
+
+	*{
+		box-sizing: border-box;
+	}
