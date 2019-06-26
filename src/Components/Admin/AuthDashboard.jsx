@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import Lottie from 'react-lottie'
 import animationData from '../../Assets/Lotties/40-loading.json'
 import data2 from '../../Assets/Lotties/291-searchask-loop.json'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class AuthDashboard extends Component {
 
@@ -16,14 +16,18 @@ class AuthDashboard extends Component {
     showResults: false,
     displayNumber: 0,
     episodeNumber: null,
-    searching: false
+    searching: false,
+    episodes: [],
+    editEpisode: ''
   }
 
   async componentDidMount() {
     let res = await axios.get('/auth/users')
     if (res.data === 'okay') {
+      let episodes = await axios.get('/api/episodes')
       this.setState({
-        loading: false
+        loading: false,
+        episodes: episodes.data
       })
     } else {
       this.props.history.push('/')
@@ -63,6 +67,11 @@ class AuthDashboard extends Component {
     this.props.history.push(`/admin/addepisode/${this.state.results[this.state.displayNumber].id}`)
   }
 
+  editRedirect = (e) => {
+    e.preventDefault()
+    this.props.history.push(`/admin/edit/${this.state.editEpisode}`)
+  }
+
   render() {
 
     const defaultOptions = {
@@ -92,11 +101,11 @@ class AuthDashboard extends Component {
               <h1>Add episode</h1>
               <form
                 onSubmit={(e) => this.searchMovies(e)} className='new-movie-form'>
-                {this.state.searching ? 
-                  <Lottie options={searchOptions} width={50} height={50}/>
-                : 
-                <><input autoComplete='off' onChange={(e) => this.handleChange(e)} value={this.state.movieTitle} type="text" name='movieTitle' />
-                <button type='submit' >Search</button></>}
+                {this.state.searching ?
+                  <Lottie options={searchOptions} width={50} height={50} />
+                  :
+                  <><input autoComplete='off' onChange={(e) => this.handleChange(e)} value={this.state.movieTitle} type="text" name='movieTitle' />
+                    <button type='submit' >Search</button></>}
               </form>
               {this.state.showResults &&
                 <div className="results-hold">
@@ -115,12 +124,24 @@ class AuthDashboard extends Component {
                     </div>
                   </form></div>}
             </div>
-            <Link to='/admin/specialepisode'><div style={{cursor: 'pointer'}} className="dash-section">
-            <h1>Add Special Episode</h1>
+            <Link to='/admin/specialepisode'><div style={{ cursor: 'pointer' }} className="dash-section">
+              <h1>Add Special Episode</h1>
             </div></Link>
-            <Link to='/admin/newpost'><div style={{cursor: 'pointer'}} className="dash-section">
-            <h1>Add blog post</h1>
+            <Link to='/admin/newpost'><div style={{ cursor: 'pointer' }} className="dash-section">
+              <h1>Add blog post</h1>
             </div></Link>
+            <div className="dash-section">
+              <h1>Edit episode</h1>
+              <form onSubmit={(e)=>this.editRedirect(e)}>
+                <select onChange={(e) => this.handleChange(e)} name="editEpisode">
+                  <option value="">---</option>
+                  {this.state.episodes.map(element => (
+                    <option key={element.episode_id} value={+element.episode_id}>{element.title}</option>
+                  ))}
+                </select>
+                <button type='submit'>Edit</button>
+              </form>
+            </div>
           </div>
         </> :
           <div className='AuthDashboard'>

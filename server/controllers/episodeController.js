@@ -11,6 +11,16 @@ module.exports={
     res.status(200).send('okay')
   },
 
+  editNumberedEpisode: async (req, res) => {
+    const db = req.app.get('db')
+    const {title, episodeNumber, episode_id, a, b, s, w} = req.body
+    let details = JSON.stringify(req.body)
+
+    await db.editNumberedEpisode(episode_id, episodeNumber, title, details, a, b, s, w)
+
+    res.status(200).send('okay')
+  },
+
   addSpecialEpisode: async (req, res) => {
     const db = req.app.get('db')
 
@@ -35,5 +45,13 @@ module.exports={
     data[0].details = details
 
     res.status(200).send(data[0])
+  },
+  
+  getAllEpisodes: async (req, res) => {
+    const db = req.app.get('db')
+
+    const data = await db.getEpisodes()
+
+    res.status(200).send(data)
   }
 }
