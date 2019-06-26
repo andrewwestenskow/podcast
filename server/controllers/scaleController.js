@@ -20,7 +20,7 @@ module.exports = {
           return element
         }
       }).sort((a, b) => {
-        if(a.number < b.number){
+        if(a.episode_id < b.episode_id){
           return 1
         } else {
           return -1
