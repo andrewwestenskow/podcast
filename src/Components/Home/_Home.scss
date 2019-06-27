@@ -1,4 +1,29 @@
 .Home{
-  background: $offwhite
+  background: $offwhite;
+  min-height: calc(100vh - 175px);
+  .hero-hold{
+    width: 100vw;
+    height: 50vh;
+    background: #e0e5e5;
+    display: flex;
+    .hero-left{
+      width: 50%;
+      height: 100%;
+      // border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      text-transform: uppercase;
+    };
+    .hero-right{
+      width: 50%;
+      height: 100%;
+      // border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
 }
 
