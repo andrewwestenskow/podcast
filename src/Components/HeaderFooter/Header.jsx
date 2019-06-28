@@ -10,29 +10,27 @@ import {connect} from 'react-redux'
 class Header extends Component {
 
   state={
-    loading: true
+    loading: true,
+    fiveEpisodes: []
   }
 
   async componentDidMount() {
     let data = await axios.get('/api/data')
     this.props.fetchData(data.data)
-    this.setState({
-      loading: false
-    })
-  }
-
-  render() {
-    let fiveEpisodes
-    if(!this.state.loading){
-      fiveEpisodes = this.props.data.scale.sort((a,b) => {
+    let fiveEpisodes = data.data.scale.sort((a,b) => {
         if(a.episode_id > b.episode_id){
           return 1
         } else {
           return -1
         }
-      }).splice(0,5)
-      console.log(fiveEpisodes)
-    }
+      }).splice(0,5)    
+    this.setState({
+      loading: false,
+      fiveEpisodes: fiveEpisodes
+    })
+  }
+
+  render() {
     return (
       
       <>
@@ -53,8 +51,8 @@ class Header extends Component {
               </h1>
               </Link>
               <div className='dropdown-content'>
-                {fiveEpisodes.map(element => (
-                  <Link key={element.westenscale_id} to={`/episodes/${element.episode_id}`}>
+                {this.state.fiveEpisodes.map(element => (
+                  <Link key={element.westenscale_id} to={`/episodes/${element.westenscale_id}`}>
                     <h1 className='navlink'>
                       {element.title}
                     </h1>

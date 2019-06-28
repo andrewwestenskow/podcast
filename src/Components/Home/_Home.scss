@@ -1,8 +1,9 @@
 .Home{
   background: $offwhite;
   min-height: calc(100vh - 175px);
+  max-width: 100vw;
   .hero-hold{
-    width: 100vw;
+    max-width: 100vw;
     height: 50vh;
     background: #e0e5e5;
     display: flex;

@@ -1,60 +1,48 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Lottie from 'react-lottie'
 import animationData from '../../Assets/Lotties/animation-w256-h256.json'
 import NumberedEpisode from './NumberedEpisode'
 import SpecialEpisode from './SpecialEpisode'
-import axios from 'axios'
+import { connect } from 'react-redux'
 
-class EpisodeInterceptor extends Component {
+const EpisodeInterceptor = (props) => {
 
-  state = {
-    data: {},
-    loading: true
-  }
+  let loading = true
 
-  componentDidMount() {
-    this.fetchData()
-  }
+  let index = props.data.episodes.findIndex( element => {
+    return (+element.episode_id) === (+props.match.params.episode_id)
+  })
 
-  fetchData = async () => {
-    let details = await axios.get(`/api/episode?id=${this.props.match.params.episode_id}`)
-
-    this.setState({
-      data: details.data,
-      loading: false
-    })
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.match.params.episode_id !== this.props.match.params.episode_id) {
-      this.fetchData()
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
     }
   }
 
-  render() {
-
-    const defaultOptions = {
-      loop: true,
-      autoplay: true,
-      animationData: animationData,
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
-      }
-    }
-
-    return (
-      <>
-        {this.state.loading ? <div className="Loading">
-          <Lottie height={200} width={200} options={defaultOptions}/>
-        </div>
-          : <>
-            {this.state.data.episodenumber ? <NumberedEpisode data={this.state.data} /> :
-              <SpecialEpisode data={this.state.data} />}
-          </>}
-      </>
-    )
+  if(index !== -1){
+    loading = false
   }
+
+  return (
+    <>
+      {loading ? <div className="Loading">
+        <Lottie height={200} width={200} options={defaultOptions} />
+      </div>
+        : <>
+          {props.data.episodes[index].episodenumber ? 
+          <NumberedEpisode data={props.data.episodes[index]} /> :
+            <SpecialEpisode data={props.data.episodes[index]} />}
+        </>}
+    </>
+  )
 }
 
-export default withRouter(EpisodeInterceptor)
+function mapStateToProps(state) {
+  return state
+}
+
+export default connect(mapStateToProps)(withRouter(EpisodeInterceptor))
