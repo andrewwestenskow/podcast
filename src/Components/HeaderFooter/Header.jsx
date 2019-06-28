@@ -3,6 +3,8 @@ import BiggerMovies from '../../Assets/bigger_movies.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Footer from './Footer'
+import {fetchData} from '../../ducks/reducer'
+import {connect} from 'react-redux'
 
 
 class Header extends Component {
@@ -13,6 +15,7 @@ class Header extends Component {
 
   async componentDidMount() {
     let fiveEpisodes = await axios.get('/api/5episodes')
+    this.props.fetchData(fiveEpisodes.data)
     this.setState({
       fiveEpisodes: fiveEpisodes.data
     })
@@ -69,4 +72,8 @@ class Header extends Component {
   }
 }
 
-export default Header
+function mapStateToProps(state) {
+  return state
+}
+
+export default connect(mapStateToProps, {fetchData})(Header)
