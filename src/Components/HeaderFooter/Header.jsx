@@ -9,22 +9,35 @@ import {connect} from 'react-redux'
 
 class Header extends Component {
 
-  state = {
-    fiveEpisodes: []
+  state={
+    loading: true
   }
 
   async componentDidMount() {
-    let fiveEpisodes = await axios.get('/api/5episodes')
-    this.props.fetchData(fiveEpisodes.data)
+    let data = await axios.get('/api/data')
+    this.props.fetchData(data.data)
     this.setState({
-      fiveEpisodes: fiveEpisodes.data
+      loading: false
     })
   }
 
   render() {
+    let fiveEpisodes
+    if(!this.state.loading){
+      fiveEpisodes = this.props.data.scale.sort((a,b) => {
+        if(a.episode_id > b.episode_id){
+          return 1
+        } else {
+          return -1
+        }
+      }).splice(0,5)
+      console.log(fiveEpisodes)
+    }
     return (
+      
       <>
-        <header className='header'>
+        {this.state.loading ? <div>loading</div> : 
+        <><header className='header'>
           <img src={BiggerMovies} alt="We watch podcast" className='header-logo' />
           <nav className='navbar'>
             <Link to='/'>
@@ -40,8 +53,8 @@ class Header extends Component {
               </h1>
               </Link>
               <div className='dropdown-content'>
-                {this.state.fiveEpisodes.map(element => (
-                  <Link key={element.episode_id} to={`/episodes/${element.episode_id}`}>
+                {fiveEpisodes.map(element => (
+                  <Link key={element.westenscale_id} to={`/episodes/${element.episode_id}`}>
                     <h1 className='navlink'>
                       {element.title}
                     </h1>
@@ -66,7 +79,7 @@ class Header extends Component {
         <>
           {this.props.children}
         </>
-        <Footer />
+        <Footer /></>}
       </>
     )
   }

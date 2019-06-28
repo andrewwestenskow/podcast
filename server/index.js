@@ -8,6 +8,7 @@ const scaleController = require('./controllers/scaleController')
 const userController = require('./controllers/usersController')
 const movieController = require('./controllers/movieController')
 const episodeController = require('./controllers/episodeController')
+const dataController = require('./controllers/dataController')
 
 
 app.use(express.json())
@@ -39,3 +40,4 @@ app.put('/episode/numbered', episodeController.editNumberedEpisode)
 app.post('/episode/special', episodeController.addSpecialEpisode)
 app.get('/api/episode', episodeController.getEpisode)
 app.get('/api/episodes', episodeController.getAllEpisodes)
+app.get('/api/data', dataController.fetchData)
