@@ -3,7 +3,6 @@ import axios from 'axios'
 import Lottie from 'react-lottie'
 import animationData from '../../Assets/Lotties/animation-w256-h256.json'
 import ReactHTMLParser from 'react-html-parser'
-import Footer from '../HeaderFooter/Footer'
 import { Link } from 'react-router-dom'
 
 class EpisodeList extends Component {
@@ -77,7 +76,6 @@ class EpisodeList extends Component {
             </div>
           </div>
         }
-        <Footer />
       </>
     )
   }

@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactHTMLParser from 'react-html-parser'
 import YouTube from 'react-youtube'
-import Footer from '../HeaderFooter/Footer'
 
 const NumberedEpisode = (props) => {
   const { data } = props
@@ -89,7 +88,6 @@ const NumberedEpisode = (props) => {
           <YouTube videoId={data.details.trailer} />
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

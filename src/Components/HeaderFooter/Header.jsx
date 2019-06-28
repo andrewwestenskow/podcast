@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BiggerMovies from '../../Assets/bigger_movies.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Footer from './Footer'
 
 
 class Header extends Component {
@@ -62,6 +63,7 @@ class Header extends Component {
         <>
           {this.props.children}
         </>
+        <Footer />
       </>
     )
   }

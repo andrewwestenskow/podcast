@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Footer from '../HeaderFooter/Footer'
 import axios from 'axios'
 
 
@@ -30,18 +29,24 @@ class Home extends Component {
       <>
         <div className='Home'>
           <div className="hero-hold">
-            <div className="hero-left">
-              <h2>The only podcast on the internet</h2>
-              <h3>where we </h3>
-              <h1>watch a movie</h1>
-              <h3>and then</h3>
-              <h1>talk about it</h1>
-            </div>
-            <div className="hero-right">
-              <h1>Subscribe now</h1>
-              <h4>...you know you want to</h4>
-            </div>
+              <div className="hero-top">
+                <h1>Join Andrew, Becca, and Syd</h1>
+                <h1>on our journey to discover</h1>
+                <h1>the best that cinema has to offer...</h1>
+              </div>
+              <div className="hero-bottom">
+                <h1>Listen now</h1>
+                <p>or</p>
+                <h2>Check out all of our episodes</h2>
+              </div>
           </div>
+          <section className="home-section">
+            <h2>The only podcast on the internet</h2>
+            <h3>where we </h3>
+            <h1>watch a movie</h1>
+            <h3>and then</h3>
+            <h1>talk about it</h1>
+          </section>
           <div className="westenscale-hold">
             {this.state.loading ? <div>loading</div> :
               <ul>
@@ -51,7 +56,6 @@ class Home extends Component {
               </ul>}
           </div>
         </div>
-        <Footer />
       </>
     )
   }
