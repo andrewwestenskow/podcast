@@ -67,7 +67,7 @@ class Header extends Component {
                 </Link>
                 <div className='dropdown-content'>
                   {this.state.fiveEpisodes.map(element => (
-                    <Link key={element.episode_id} to={`/episodes/${element.westenscale_id}`}>
+                    <Link key={element.episode_id} to={`/episodes/${element.episode_id}`}>
                       <h1 className='navlink'>
                         {element.title}
                       </h1>

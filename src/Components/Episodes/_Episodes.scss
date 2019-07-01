@@ -41,7 +41,7 @@
 
 .title-hold{
   margin-left: 25px;
-  width: 50%;
+  width: 60%;
   h1{
     font-size: 3.5rem;
     margin-top: 0;
@@ -128,4 +128,27 @@
 .name{
   font-size: 2rem;
   font-weight: 500;
+}
+
+.special-movie{
+  margin: 25px 0; 
+  img{
+    height: 200px;
+  }
+  display: flex;
+  .special-movie-text{
+    margin-left: 15px;
+    p{
+      margin: 0;
+      margin-bottom: 10px;
+    }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .special-summary{
+      margin-top: 10px;
+      width: 80%;
+    }
+  }
 }
