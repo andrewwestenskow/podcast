@@ -19,31 +19,55 @@ const EpisodeList = (props) => {
       <div className="EpisodeList">
         <div className="episode-list-hold">
           <h1>All Episodes: </h1>
-          {sortArr.map(element => (
-            <div key={element.episode_id} className='episode-list-item'>
-              <img className='episode-list-poster' src={element.details.poster} alt="" />
-              <div className="episode-list-item-content">
-                <div className='episode-list-item-content-1'>
-                  <div className="episode-list-item-content-1-text"><Link to={`/episodes/${element.episode_id}`}><h2>
-                  Ep. {element.episodenumber}: {element.title}
-                  </h2></Link>
-                  <h4>On the Westenscale: {element.details.w}</h4></div>
-                  <div className="iframe-hold">
-                    {ReactHTMLParser(element.details.player)}
+          {sortArr.map(element => {
+            if (element.episodenumber) {
+              return <div key={element.episode_id} className='episode-list-item'>
+                <img className='episode-list-poster' src={element.details.poster} alt="" />
+                <div className="episode-list-item-content">
+                  <div className='episode-list-item-content-1'>
+                    <div className="episode-list-item-content-1-text"><Link to={`/episodes/${element.episode_id}`}><h2>
+                      Ep. {element.episodenumber}: {element.title}
+                    </h2></Link>
+                      <h4>On the Westenscale: {element.details.w}</h4></div>
+                    <div className="iframe-hold">
+                      {ReactHTMLParser(element.details.player)}
+                    </div>
                   </div>
-                </div>
-                <div className="episode-list-item-content-2">
-                  <h4>Reviewed by: {element.details.author}</h4>
+                  <div className="episode-list-item-content-2">
+                    <h4>Reviewed by: {element.details.author}</h4>
 
-                  <div className='review-preview'>
-                    {ReactHTMLParser(element.details.review)}
+                    <div className='review-preview'>
+                      {ReactHTMLParser(element.details.review)}
+                    </div>
+                    <Link to={`/episodes/${element.episode_id}`}>Read more...</Link>
+
                   </div>
-                  <Link to={`/episodes/${element.episode_id}`}>Read more...</Link>
-
                 </div>
               </div>
-            </div>
-          ))}
+            } else {
+              return <div key={element.episode_id} className='episode-list-item'>
+                <img className='episode-list-poster' src={element.details.poster} alt="" />
+                <div className="episode-list-item-content">
+                  <div className='episode-list-item-content-1'>
+                    <div className="episode-list-item-content-1-text"><Link to={`/episodes/${element.episode_id}`}><h2>
+                      {element.title}
+                    </h2></Link>
+                    </div>
+                    <div className="iframe-hold">
+                      {ReactHTMLParser(element.details.player)}
+                    </div>
+                  </div>
+                  <div className="episode-list-item-content-2">
+                    <div className='review-preview'>
+                      {ReactHTMLParser(element.details.summary)}
+                    </div>
+                    <Link to={`/episodes/${element.episode_id}`}>Read more...</Link>
+
+                  </div>
+                </div>
+              </div>
+            }
+          })}
         </div>
       </div>
     </>
