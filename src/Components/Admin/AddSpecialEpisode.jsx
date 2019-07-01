@@ -16,7 +16,8 @@ class AddSpecialEpisode extends Component {
     movieSearch: '',
     showResult: false,
     resultIndex: 0,
-    results: []
+    results: [],
+    player: ''
   }
 
   handleChange = (e) => {
@@ -93,6 +94,8 @@ class AddSpecialEpisode extends Component {
             <input onChange={(e) => this.handleChange(e)} type="text" name="poster" />
             <p>Episode Backdrop</p>
             <input onChange={(e) => this.handleChange(e)} type="text" name="backdrop" />
+            <p>Player HTML</p>
+            <input type="text" name='player' value={this.state.player} onChange={(e)=> {this.handleChange(e)}}/>
             <p>Summary</p>
             <ReactQuill modules={modules} onChange={this.handleSummaryChange} value={this.state.summary} className='number-quill' theme='snow' />
           </section>
