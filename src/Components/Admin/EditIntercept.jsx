@@ -3,6 +3,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import AuthHeader from './AuthHeader'
 import EditNumbered from './EditNumbered'
+import EditSpecial from './EditSpecial'
 
 class EditIntercept extends Component {
 
@@ -25,8 +26,10 @@ class EditIntercept extends Component {
         <AuthHeader />
         {this.state.loading ? <div>loading</div> :
           <>
-            {this.state.episode.episodenumber ? <EditNumbered data={this.state.episode}/> :
-              <div>Not</div>}
+            {this.state.episode.episodenumber ?
+              <EditNumbered data={this.state.episode} /> :
+              <EditSpecial data={this.state.episode}/>
+            }
           </>}
       </>
     )

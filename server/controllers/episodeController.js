@@ -40,6 +40,15 @@ module.exports={
     res.status(200).send('okay')
   },
 
+  editSpecialEpisode: async (req, res) => {
+    const db = req.app.get('db')
+    const {title, episode_id} = req.body
+    let details = JSON.stringify(req.body)
+    await db.editSpecialEpisode(episode_id, title, details)
+
+    res.status(200).send('okay')
+  },
+
   getEpisode: async (req, res) => {
     const db = req.app.get('db')
 
