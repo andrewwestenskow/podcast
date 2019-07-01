@@ -10,6 +10,9 @@
   h1{
     font-size: 3rem;
     color: $red;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
   padding: 0 25px;
   width: 60%;
@@ -44,7 +47,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: flex-start;
         width: 40%;
         .episode-list-item-content-1-text{
           height: 40%;
@@ -53,16 +56,15 @@
           position: relative;
           width: 100%;
           height: 60%;
+          // max-height: 90px;
           padding: 0;
           margin: 0;
           iframe{
-            width: 100%;
-            height: 100%;
+            display: block;
             position: absolute;
             top: 0;
-            bottom: 0;
             left: 0;
-            right: 0;
+            width: 99%;
           }
         }
         h2{
