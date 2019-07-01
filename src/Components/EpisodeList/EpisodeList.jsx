@@ -24,11 +24,13 @@ const EpisodeList = (props) => {
               <img className='episode-list-poster' src={element.details.poster} alt="" />
               <div className="episode-list-item-content">
                 <div className='episode-list-item-content-1'>
-                  <Link to={`/episodes/${element.episode_id}`}><h2>
-                    Ep. {element.episodenumber}: {element.title}
+                  <div className="episode-list-item-content-1-text"><Link to={`/episodes/${element.episode_id}`}><h2>
+                  Ep. {element.episodenumber}: {element.title}
                   </h2></Link>
-                  <h4>On the Westenscale: {element.details.w}</h4>
-                  {ReactHTMLParser(element.details.player)}
+                  <h4>On the Westenscale: {element.details.w}</h4></div>
+                  <div className="iframe-hold">
+                    {ReactHTMLParser(element.details.player)}
+                  </div>
                 </div>
                 <div className="episode-list-item-content-2">
                   <h4>Reviewed by: {element.details.author}</h4>
