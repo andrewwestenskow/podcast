@@ -8,6 +8,10 @@ module.exports={
 
     await db.createNumberedEpisode(+episodeNumber, title, details, +b, +s, +a, +w)
 
+    let id = await db.getEpisodeId(+episodeNumber)
+
+    await db.setWestenscaleId(+id, +episodeNumber)
+
     res.status(200).send('okay')
   },
 

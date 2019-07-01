@@ -19,8 +19,9 @@ class Header extends Component {
   async componentDidMount() {
     let data = await axios.get('/api/data')
     this.props.fetchData(data.data)
-    let fiveEpisodes = data.data.scale.sort((a, b) => {
-      if (a.episode_id > b.episode_id) {
+    let episodes = [...data.data.episodes]
+    let fiveEpisodes = episodes.sort((a, b) => {
+      if (a.episode_id < b.episode_id) {
         return 1
       } else {
         return -1
@@ -66,7 +67,7 @@ class Header extends Component {
                 </Link>
                 <div className='dropdown-content'>
                   {this.state.fiveEpisodes.map(element => (
-                    <Link key={element.westenscale_id} to={`/episodes/${element.westenscale_id}`}>
+                    <Link key={element.episode_id} to={`/episodes/${element.westenscale_id}`}>
                       <h1 className='navlink'>
                         {element.title}
                       </h1>
