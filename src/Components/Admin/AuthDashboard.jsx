@@ -18,7 +18,8 @@ class AuthDashboard extends Component {
     episodeNumber: null,
     searching: false,
     episodes: [],
-    editEpisode: ''
+    editEpisode: '',
+    nothingFound: false
   }
 
   async componentDidMount() {
@@ -50,16 +51,24 @@ class AuthDashboard extends Component {
   searchMovies = async (e) => {
     e.preventDefault()
     this.setState({
-      searching: true
+      searching: true,
+      nothingFound: false
     })
     let searchString = this.state.movieTitle.split(' ').join('+')
     let results = await axios.get(`/movies?searchString=${searchString}`)
-    this.setState({
-      results: results.data.results,
-      movieTitle: '',
-      showResults: true,
-      searching: false
-    })
+    if(results.data.results.length === 0){
+      this.setState({
+        nothingFound: true,
+        searching: false
+      })
+    } else {
+      this.setState({
+        results: results.data.results,
+        movieTitle: '',
+        showResults: true,
+        searching: false
+      })
+    }
   }
 
   nextMovie = () => {
@@ -130,6 +139,7 @@ class AuthDashboard extends Component {
                       <button type='button' onClick={this.nextMovie}>No</button>
                     </div>
                   </form></div>}
+                  {this.state.nothingFound && <p>No movies found</p>}
             </div>
             <Link to='/admin/specialepisode'><div style={{ cursor: 'pointer' }} className="dash-section">
               <h1>Add Special Episode</h1>

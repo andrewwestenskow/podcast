@@ -10,7 +10,8 @@ class Login extends Component {
   state = {
     username: '',
     password: '',
-    loading: false
+    loading: false,
+    error: false
   }
 
   handleLogin = async (e) => {
@@ -20,7 +21,8 @@ class Login extends Component {
 
     try {
       this.setState({
-        loading: true
+        loading: true,
+        error: false
       })
       let user = { username, password }
       let login = await axios.post('/auth/login', user)
@@ -30,7 +32,10 @@ class Login extends Component {
         throw new Error()
       }
     } catch (error) {
-      console.log(error)
+      this.setState({
+        loading: false,
+        error: true
+      })
     }
   }
 
@@ -64,6 +69,7 @@ class Login extends Component {
           <input onChange={(e) => this.handleChange(e)} value={this.state.password} name='password' type="password" />
           <button type='submit'>Log In</button>
         </form>
+        {this.state.error && <p>Incorrect username or password</p>}
       </div>
     )
   }
