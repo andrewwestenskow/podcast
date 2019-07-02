@@ -7,7 +7,7 @@ import {tags} from './tags'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
-class NewBlog extends Component {
+class EditBlog extends Component {
 
   state = {
     title: '',
@@ -20,7 +20,16 @@ class NewBlog extends Component {
   async componentDidMount(){
     let users = await axios.get('/auth/users')
     if(users.data === 'okay'){
-      return
+      let data = await axios.get(`/api/blog?id=${+this.props.match.params.id}`)
+      let post = data.data
+      let details = JSON.parse(post.details)
+      this.setState({
+        title: post.title,
+        author: post.author,
+        tags: details.tags.join(', '),
+        subject: post.subject,
+        post: details.post
+      })
     } else {
       this.props.history.push('/')
     }
@@ -36,9 +45,10 @@ class NewBlog extends Component {
     this.setState({post: value})
   }
 
-  submitBlog = async () => {
+  editBlog = async () => {
     let tags = this.state.tags.split(', ')
     const blog = {
+      blogs_id: +this.props.match.params.id,
       title: this.state.title,
       author: this.state.author,
       post: this.state.post,
@@ -46,7 +56,7 @@ class NewBlog extends Component {
       tags: tags
     }
     
-    let result = await axios.post('/api/blog', blog)
+    let result = await axios.put('/api/blog', blog)
 
     if(result.data === 'okay'){
       alert('success')
@@ -81,11 +91,11 @@ class NewBlog extends Component {
           <div className='new-post-button-hold'>{tags.map(element=>(
           <button onClick={()=>this.addTags(element)} key={element.name}>{element.name}</button>
           ))}</div>
-          <button onClick={this.submitBlog}>Submit</button>
+          <button onClick={this.editBlog}>Submit</button>
         </div>
       </>
     )
   }
 }
 
-export default withRouter(NewBlog)
+export default withRouter(EditBlog)

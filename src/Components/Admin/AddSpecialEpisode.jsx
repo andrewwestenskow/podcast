@@ -20,6 +20,15 @@ class AddSpecialEpisode extends Component {
     player: ''
   }
 
+  async componentDidMount(){
+    let users = await (axios.get('/auth/users'))
+    if(users.data === 'okay'){
+      return
+    } else {
+      this.props.history.push('/')
+    }
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value

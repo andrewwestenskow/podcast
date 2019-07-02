@@ -13,11 +13,16 @@ class EditIntercept extends Component {
   }
 
   async componentDidMount() {
-    let episode = await axios.get(`/api/episode?id=${this.props.match.params.id}`)
-    this.setState({
-      episode: episode.data,
-      loading: false
-    })
+    let users = await axios.get('/auth/users')
+    if (users.data === 'okay') {
+      let episode = await axios.get(`/api/episode?id=${this.props.match.params.id}`)
+      this.setState({
+        episode: episode.data,
+        loading: false
+      })
+    } else {
+      this.props.history.push('/')
+    }
   }
 
   render() {
@@ -28,7 +33,7 @@ class EditIntercept extends Component {
           <>
             {this.state.episode.episodenumber ?
               <EditNumbered data={this.state.episode} /> :
-              <EditSpecial data={this.state.episode}/>
+              <EditSpecial data={this.state.episode} />
             }
           </>}
       </>

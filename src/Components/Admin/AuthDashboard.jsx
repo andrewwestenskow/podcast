@@ -19,13 +19,23 @@ class AuthDashboard extends Component {
     searching: false,
     episodes: [],
     editEpisode: '',
-    nothingFound: false
+    nothingFound: false,
+    blogs: [],
+    editBlog: ''
   }
 
   async componentDidMount() {
     let res = await axios.get('/auth/users')
     if (res.data === 'okay') {
       let episodes = await axios.get('/api/episodes')
+      let blogs = await axios.get('/api/blogs')
+      blogs.data.sort((a,b) => {
+        if(a.blogs_id < b.blogs_id){
+          return 1
+        } else {
+          return -1
+        }
+      })
       episodes.data.sort((a,b) => {
         if(a.episode_id < b.episode_id){
           return 1
@@ -35,7 +45,8 @@ class AuthDashboard extends Component {
       })
       this.setState({
         loading: false,
-        episodes: episodes.data
+        episodes: episodes.data,
+        blogs: blogs.data
       })
     } else {
       this.props.history.push('/')
@@ -85,7 +96,11 @@ class AuthDashboard extends Component {
 
   editRedirect = (e) => {
     e.preventDefault()
-    this.props.history.push(`/admin/edit/${this.state.editEpisode}`)
+    this.props.history.push(`/admin/edit/episode/${this.state.editEpisode}`)
+  }
+  editBlogRedirect = (e) => {
+    e.preventDefault()
+    this.props.history.push(`/admin/edit/blog/${this.state.editBlog}`)
   }
 
   render() {
@@ -144,9 +159,6 @@ class AuthDashboard extends Component {
             <Link to='/admin/specialepisode'><div style={{ cursor: 'pointer' }} className="dash-section">
               <h1>Add Special Episode</h1>
             </div></Link>
-            <Link to='/admin/newpost'><div style={{ cursor: 'pointer' }} className="dash-section">
-              <h1>Add blog post</h1>
-            </div></Link>
             <div className="dash-section">
               <h1>Edit episode</h1>
               <form onSubmit={(e)=>this.editRedirect(e)}>
@@ -154,6 +166,21 @@ class AuthDashboard extends Component {
                   <option value="">---</option>
                   {this.state.episodes.map(element => (
                     <option key={element.episode_id} value={+element.episode_id}>{element.title}</option>
+                  ))}
+                </select>
+                <button type='submit'>Edit</button>
+              </form>
+            </div>
+            <Link to='/admin/newpost'><div style={{ cursor: 'pointer' }} className="dash-section">
+              <h1>Add blog post</h1>
+            </div></Link>
+            <div className="dash-section">
+              <h1>Edit Blog Post</h1>
+              <form onSubmit={(e)=>this.editBlogRedirect(e)}>
+                <select onChange={(e) => this.handleChange(e)} name="editBlog">
+                  <option value="">---</option>
+                  {this.state.blogs.map(element => (
+                    <option key={element.blogs_id} value={+element.blogs_id}>{element.title}</option>
                   ))}
                 </select>
                 <button type='submit'>Edit</button>

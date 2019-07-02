@@ -11,6 +11,7 @@ import EditIntercept from './Components/Admin/EditIntercept';
 import EpisodeList from './Components/EpisodeList/EpisodeList'
 import BlogListHold from './Components/Blog/BlogListHold'
 import NewBlog from './Components/Admin/NewBlog';
+import EditBlog from './Components/Admin/EditBlog'
 
 export default(
   <Switch>
@@ -18,7 +19,8 @@ export default(
     <Route path='/admin/dashboard' component={AuthDashboard}/>
     <Route path='/admin/addepisode/:id' component={AddNumberEpisode}/>
     <Route path='/admin/specialepisode' component={AddSpecialEpisode}/>
-    <Route path='/admin/edit/:id' component={EditIntercept}/>
+    <Route path='/admin/edit/episode/:id' component={EditIntercept}/>
+    <Route path='/admin/edit/blog/:id' component={EditBlog}/>
     <Route path='/admin/newpost' component={NewBlog}/>
     <Route path='/' component={() => (
       <Header>
