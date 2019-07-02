@@ -10,6 +10,7 @@ import EpisodeInterceptor from './Components/Episodes/EpisodeInterceptor';
 import EditIntercept from './Components/Admin/EditIntercept';
 import EpisodeList from './Components/EpisodeList/EpisodeList'
 import BlogListHold from './Components/Blog/BlogListHold'
+import NewBlog from './Components/Admin/NewBlog';
 
 export default(
   <Switch>
@@ -18,6 +19,7 @@ export default(
     <Route path='/admin/addepisode/:id' component={AddNumberEpisode}/>
     <Route path='/admin/specialepisode' component={AddSpecialEpisode}/>
     <Route path='/admin/edit/:id' component={EditIntercept}/>
+    <Route path='/admin/newpost' component={NewBlog}/>
     <Route path='/' component={() => (
       <Header>
         <Switch>

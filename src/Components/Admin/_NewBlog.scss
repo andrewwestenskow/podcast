@@ -1,0 +1,14 @@
+.NewPost{
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 50px;
+  .new-post-button-hold{
+    margin: 10px 0;
+    button{
+      padding: 5px;
+      margin-right: 10px;
+    }
+  }
+}

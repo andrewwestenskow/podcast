@@ -33,8 +33,11 @@
 }
 
 .number-quill{
-  height: 350px;
-  overflow-y: scroll;
+  min-height: 350px;
+  // overflow-y: scroll;
+  .ql-editor{
+    min-height: 350px;
+  }
   .ql-toolbar{
     position: sticky;
     top: 0;
