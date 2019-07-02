@@ -9,6 +9,7 @@ import AddSpecialEpisode from './Components/Admin/AddSpecialEpisode'
 import EpisodeInterceptor from './Components/Episodes/EpisodeInterceptor';
 import EditIntercept from './Components/Admin/EditIntercept';
 import EpisodeList from './Components/EpisodeList/EpisodeList'
+import BlogListHold from './Components/Blog/BlogListHold'
 
 export default(
   <Switch>
@@ -23,6 +24,7 @@ export default(
           <Route exact path='/' component={Home}/>
           <Route exact path='/episodes/list' component={EpisodeList}/>
           <Route path = '/episodes/:episode_id' component={EpisodeInterceptor}/>
+          <Route exact path='/blog' component={BlogListHold}/>
         </Switch>
       </Header>
     )}/>

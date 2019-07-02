@@ -1,7 +1,7 @@
 import React from 'react'
-import ReactHTMLParser from 'react-html-parser'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import NumberedEpisodeList from './NumberedEpisodeList'
+import SpecialEpisodeList from './SpecialEpisodeList'
 
 const EpisodeList = (props) => {
 
@@ -21,51 +21,9 @@ const EpisodeList = (props) => {
           <h1>All Episodes: </h1>
           {sortArr.map(element => {
             if (element.episodenumber) {
-              return <div key={element.episode_id} className='episode-list-item'>
-                <img className='episode-list-poster' src={element.details.poster} alt="" />
-                <div className="episode-list-item-content">
-                  <div className='episode-list-item-content-1'>
-                    <div className="episode-list-item-content-1-text"><Link to={`/episodes/${element.episode_id}`}><h2>
-                      Ep. {element.episodenumber}: {element.title}
-                    </h2></Link>
-                      <h4>On the Westenscale: {element.details.w}</h4></div>
-                    <div className="iframe-hold">
-                      {ReactHTMLParser(element.details.player)}
-                    </div>
-                  </div>
-                  <div className="episode-list-item-content-2">
-                    <h4>Reviewed by: {element.details.author}</h4>
-
-                    <div className='review-preview'>
-                      {ReactHTMLParser(element.details.review)}
-                    </div>
-                    <Link to={`/episodes/${element.episode_id}`}>Read more...</Link>
-
-                  </div>
-                </div>
-              </div>
+              return <NumberedEpisodeList element={element}/>
             } else {
-              return <div key={element.episode_id} className='episode-list-item'>
-                <img className='episode-list-poster' src={element.details.poster} alt="" />
-                <div className="episode-list-item-content">
-                  <div className='episode-list-item-content-1'>
-                    <div className="episode-list-item-content-1-text"><Link to={`/episodes/${element.episode_id}`}><h2>
-                      {element.title}
-                    </h2></Link>
-                    </div>
-                    <div className="iframe-hold">
-                      {ReactHTMLParser(element.details.player)}
-                    </div>
-                  </div>
-                  <div className="episode-list-item-content-2">
-                    <div className='review-preview'>
-                      {ReactHTMLParser(element.details.summary)}
-                    </div>
-                    <Link to={`/episodes/${element.episode_id}`}>Read more...</Link>
-
-                  </div>
-                </div>
-              </div>
+              return <SpecialEpisodeList element={element}/>
             }
           })}
         </div>
