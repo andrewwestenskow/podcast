@@ -11,8 +11,6 @@ module.exports={
     let ids = await db.getEpisodeId(+episodeNumber)
     let id = ids[0].episode_id
 
-    console.log(id)
-
     await db.setWestenscaleId(+id, +episodeNumber)
 
     res.status(200).send('okay')

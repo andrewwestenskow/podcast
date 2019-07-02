@@ -29,7 +29,8 @@ class AddNumberEpisode extends Component {
     a: null,
     b: null,
     s: null,
-    w: null
+    w: null,
+    submitting: false
   }
 
   async componentDidMount() {
@@ -135,6 +136,9 @@ class AddNumberEpisode extends Component {
 
   createEpisode = async (e) => {
     e.preventDefault()
+    this.setState({
+      submitting: true
+    })
     const { details } = this.state
 
     const movie = {
@@ -240,12 +244,12 @@ class AddNumberEpisode extends Component {
                 <input onChange={(e) => this.handleChange(e)} name='player' type="text" />
                 <p>Westenscale</p>
                 <div className="westenscale-input">
-                  <p>Andrew</p>
-                  <input step='any' name='a' onChange={(e) => this.handleChange(e)} type="number" />
                   <p>Becca</p>
                   <input step='any' name='b' onChange={(e) => this.handleChange(e)} type="number" />
                   <p>Syd</p>
                   <input step='any' name='s' onChange={(e) => this.handleChange(e)} type="number" />
+                  <p>Andrew</p>
+                  <input step='any' name='a' onChange={(e) => this.handleChange(e)} type="number" />
                   <p>Overall</p>
                   <input step='any' name='w' onChange={(e) => this.handleChange(e)} type="number" />
                 </div>
@@ -253,7 +257,7 @@ class AddNumberEpisode extends Component {
                 <input type="text" name='author' onChange={(e) => this.handleChange(e)} />
                 <p>Review</p>
                 <ReactQuill modules={modules} onChange={this.handleReviewChange} value={this.state.review} className='number-quill' theme='snow' />
-                <button>Submit Episode</button>
+                {this.state.submitting ? <div>loading...</div> :<button>Submit Episode</button>}
               </form>
             </section>
           </div>}

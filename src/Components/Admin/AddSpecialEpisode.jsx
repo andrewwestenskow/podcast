@@ -35,6 +35,7 @@ class AddSpecialEpisode extends Component {
       backdrop: this.state.backdrop,
       summary: this.state.summary,
       movies: this.state.movies,
+      player: this.state.player
 
     }
 

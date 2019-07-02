@@ -25,6 +25,13 @@ class AuthDashboard extends Component {
     let res = await axios.get('/auth/users')
     if (res.data === 'okay') {
       let episodes = await axios.get('/api/episodes')
+      episodes.data.sort((a,b) => {
+        if(a.episode_id < b.episode_id){
+          return 1
+        } else {
+          return -1
+        }
+      })
       this.setState({
         loading: false,
         episodes: episodes.data
