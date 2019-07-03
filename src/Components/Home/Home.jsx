@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import EpisodeCarousel from './EpisodeCarousel'
+import { connect } from 'react-redux'
 
 
 class Home extends Component {
 
   state = {
     loading: true,
-    scale: []
+    scale: [],
+    fiveEpisodes: []
   }
 
   async componentDidMount() {
@@ -18,9 +21,25 @@ class Home extends Component {
         return -2
       }
     })
+
+    let episodes = [...this.props.data.episodes]
+    let fiveEpisodesIndex = []
+
+    while (fiveEpisodesIndex.length < 5) {
+      let num = Math.floor(Math.random() * episodes.length - 1)
+      if (fiveEpisodesIndex.indexOf(num) === -1) {
+        fiveEpisodesIndex.push(num)
+      }
+    }
+
+    let fiveEpisodes = episodes.filter((element, index) => {
+      return fiveEpisodesIndex.includes(index)
+    })
+
     this.setState({
       scale: scale.data,
-      loading: false
+      loading: false,
+      fiveEpisodes
     })
   }
 
@@ -29,23 +48,19 @@ class Home extends Component {
       <>
         <div className='Home'>
           <div className="hero-hold">
-              <div className="hero-top">
-                <h1>Join Andrew, Becca, and Syd</h1>
-                <h1>on our journey to discover</h1>
-                <h1>the best that cinema has to offer...</h1>
-              </div>
-              <div className="hero-bottom">
-                <h1>Listen now</h1>
-                <p>or</p>
-                <h2>Check out all of our episodes</h2>
-              </div>
+            <div className="hero-left">
+              <h2>The only podcast on the internet</h2>
+              <h3>where we </h3>
+              <h1>watch a movie</h1>
+              <h3>and then</h3>
+              <h1>talk about it</h1>
+            </div>
+            <div className="hero-right">
+              <EpisodeCarousel fiveEpisodes={this.state.fiveEpisodes} />
+            </div>
           </div>
           <section className="home-section">
-            <h2>The only podcast on the internet</h2>
-            <h3>where we </h3>
-            <h1>watch a movie</h1>
-            <h3>and then</h3>
-            <h1>talk about it</h1>
+
           </section>
           <div className="westenscale-hold">
             {this.state.loading ? <div>loading</div> :
@@ -61,4 +76,8 @@ class Home extends Component {
   }
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps)(Home)
