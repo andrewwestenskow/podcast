@@ -38,6 +38,10 @@ class NewBlog extends Component {
 
   submitBlog = async () => {
     let tags = this.state.tags.split(', ')
+    tags.push(this.state.title, this.state.author, this.state.subject)
+    tags.forEach(element => {
+      return element.toLowerCase()
+    })
     const blog = {
       title: this.state.title,
       author: this.state.author,
