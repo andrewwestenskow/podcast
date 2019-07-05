@@ -1,1 +1,1 @@
-select blogs_id, title from blogs
+select * from blogs
