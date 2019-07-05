@@ -7,7 +7,28 @@
   // background: #bada55;
   text-align: center;
   img{
-    width: 15vw;
+    width: 14vw;
     margin: 0 auto;
+  }
+  h1{
+    // margin: 0;
+    color: $primaryBlue;
+  }
+}
+
+.home-westenscale-hold{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  h4{
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  img{
+    max-height: 25px;
+    max-width: 25px;
+    margin: 0 !important;
+    margin-left: 5px !important;
   }
 }

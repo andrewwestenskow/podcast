@@ -31,7 +31,8 @@ const EpisodeCarousel = (props) => {
             <h1>
               {element.title}
             </h1>
-            {element.details.w && <div className="home-westenscale-hold">
+            {element.details.w && 
+            <div className="home-westenscale-hold">
               <h4>On the Westenscale: {element.details.w}</h4>
               {element.details.w >= 9 && <img src={fire} alt='fire'/>}
             </div>}

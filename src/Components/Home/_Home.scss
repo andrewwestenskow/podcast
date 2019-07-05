@@ -13,6 +13,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-around;
+      h1{
+        font-size: 4rem;
+        margin: 0;
+        color: $primaryBlue;
+        text-decoration: underline;
+        text-transform: uppercase;
+      }
+      h2{
+        font-size: 3rem;
+        margin: 0;
+      }
+      h3{
+        font-size: 2.5rem;
+        margin: 0;
+      }
       // border-right: 1px solid black;
     };
     .hero-right{
@@ -25,16 +41,5 @@
   }
 }
 
-.home-westenscale-hold{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  img{
-    max-height: 25px;
-    max-width: 25px;
-    margin: 0 !important;
-    margin-left: 5px !important;
-  }
-}
+
 
