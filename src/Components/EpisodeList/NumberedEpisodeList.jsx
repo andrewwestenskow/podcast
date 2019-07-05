@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactHTMLParser from 'react-html-parser'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import fire from '../../Assets/fire.png'
 
 const NumberedEpisodeList = (props) => (
   <div key={props.element.episode_id} className='episode-list-item'>
@@ -10,7 +11,11 @@ const NumberedEpisodeList = (props) => (
         <div className="episode-list-item-content-1-text"><Link to={`/episodes/${props.element.episode_id}`}><h2>
           Ep. {props.element.episodenumber}: {props.element.title}
         </h2></Link>
-          <h4>On the Westenscale: {props.element.details.w}</h4></div>
+          <div className="list-westenscale-hold">
+            <h4>On the Westenscale: {props.element.details.w}</h4>
+            {props.element.details.w >= 9 && <img src={fire} alt='fire' />}
+          </div>
+        </div>
         <div className="iframe-hold">
           {ReactHTMLParser(props.element.details.player)}
         </div>

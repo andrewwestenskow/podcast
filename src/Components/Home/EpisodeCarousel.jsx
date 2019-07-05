@@ -1,12 +1,13 @@
 import React from 'react'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
+import fire from '../../Assets/fire.png'
 
 
 const EpisodeCarousel = (props) => {
 
   const settings = {
-    dots: true,
+    dots: false,
     arrows: false,
     infinite: true,
     slidesToShow: 1,
@@ -30,7 +31,10 @@ const EpisodeCarousel = (props) => {
             <h1>
               {element.title}
             </h1>
-            <h4>On the Westenscale: {element.details.w}</h4>
+            {element.details.w && <div className="home-westenscale-hold">
+              <h4>On the Westenscale: {element.details.w}</h4>
+              {element.details.w >= 9 && <img src={fire} alt='fire'/>}
+            </div>}
             <Link to={`/episodes/${element.episode_id}`}>
               <div>
                 <h2>Listen Now</h2>

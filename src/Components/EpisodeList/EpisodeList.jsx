@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import NumberedEpisodeList from './NumberedEpisodeList'
 import SpecialEpisodeList from './SpecialEpisodeList'
 
+
 const EpisodeList = (props) => {
 
   let episodes = props.data.episodes
@@ -21,10 +22,11 @@ const EpisodeList = (props) => {
           <h1>All Episodes: </h1>
           {sortArr.map(element => {
             if (element.episodenumber) {
-              return <NumberedEpisodeList element={element}/>
+              return <NumberedEpisodeList key={element.episode_id} element={element}/>
             } else {
-              return <SpecialEpisodeList element={element}/>
+              return <SpecialEpisodeList key={element.episode_id} element={element}/>
             }
+            
           })}
         </div>
       </div>
