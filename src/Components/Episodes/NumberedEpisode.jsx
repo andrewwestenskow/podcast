@@ -68,7 +68,7 @@ const NumberedEpisode = (props) => {
         <div className="episode-info-hold">
           <h1 className='left'>Listen Now: </h1>
           {ReactHTMLParser(data.details.player)}
-          <div className="westenscale-hold">
+          <div className="episode-westenscale-hold">
             <h1>On the Westenscale: {data.details.w}</h1>
             <div className="scores-hold">
               <p>Andrew: {data.details.a}</p>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class BlogListHold extends Component {
 
@@ -30,9 +31,9 @@ class BlogListHold extends Component {
             <h1>Blog Posts:</h1>
             {this.state.blogs.map(element => {
               return <div key={element.blogs_id} className='episode-list-item'>
-                <h1>
+                <Link to={`/blog/${element.blogs_id}`}><h1>
                   {element.title}
-                </h1>
+                </h1></Link>
                 <p>By: {element.author}</p>
                 
               </div>
