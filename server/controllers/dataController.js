@@ -117,5 +117,15 @@ module.exports ={
 
 
     res.status(200).send({episodes: toSend, numPages})
+  },
+
+  fetchEpisode: async (req, res) => {
+    const db = req.app.get('db')
+    const {id} = req.query
+    let [episode] = await db.getEpisodeByEpisodeId(+id)
+    const newDetails = JSON.parse(episode.details)
+    episode.details = newDetails
+
+    res.status(200).send(episode)
   }
 }
