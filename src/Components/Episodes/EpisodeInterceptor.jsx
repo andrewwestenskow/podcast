@@ -36,9 +36,6 @@ class EpisodeInterceptor extends Component {
     })
   }
 
-
-
-
   render() {
     const defaultOptions = {
       loop: true,
