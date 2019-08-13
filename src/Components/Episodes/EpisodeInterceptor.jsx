@@ -13,7 +13,21 @@ class EpisodeInterceptor extends Component {
     data: {}
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchEpisode()
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.match.params.episode_id !== this.props.match.params.episode_id){
+      this.fetchEpisode()
+    }
+  }
+
+  fetchEpisode = async () => {
+    this.setState({
+      loading: true
+    })
+
     let { data } = await axios.get(`/api/episode?id=${this.props.match.params.episode_id}`)
 
     this.setState({
