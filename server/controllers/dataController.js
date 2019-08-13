@@ -77,9 +77,45 @@ module.exports ={
         episode_id: element.episode_id
       }
     })
-
-
-
     res.status(200).send({scale, randomToSend})
+  },
+
+  fetchEpisodeList: async (req, res) => {
+    const db = req.app.get('db')
+    const {page} = req.query
+
+    let episodes = await db.getEpisodes()
+
+    episodes.sort((a, b) => {
+      if(a.episode_id < b.episode_id){
+        return 1
+      } else {
+        return -1
+      }
+    })
+
+    const numPages = Math.ceil(episodes.length /10)
+    let pages = []
+
+    for(let i = 0; i <numPages; i++){
+      pages.push(episodes.splice(0, 10))
+    }
+
+    let toSend = pages[page].map(element => {
+      const newDetails = JSON.parse(element.details)
+      return {
+        episode_id: element.episode_id,
+        title: element.title,
+        episodenumber: element.episodenumber,
+        w: newDetails.w,
+        player: newDetails.player,
+        author: newDetails.author,
+        review: newDetails.review,
+        poster: newDetails.poster
+      }
+    })
+
+
+    res.status(200).send({episodes: toSend, numPages})
   }
 }

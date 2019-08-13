@@ -18,15 +18,6 @@ class Header extends Component {
 
   async componentDidMount() {
     let data = await axios.get('/api/header')
-    // this.props.fetchData(data.data)
-    // let episodes = [...data.data.episodes]
-    // let fiveEpisodes = episodes.sort((a, b) => {
-    //   if (a.episode_id < b.episode_id) {
-    //     return 1
-    //   } else {
-    //     return -1
-    //   }
-    // }).splice(0, 5)
     this.setState({
       loading: false,
       fiveEpisodes: data.data

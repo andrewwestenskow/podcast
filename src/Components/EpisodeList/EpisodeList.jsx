@@ -1,27 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import NumberedEpisodeList from './NumberedEpisodeList'
 import SpecialEpisodeList from './SpecialEpisodeList'
+import axios from 'axios';
 
 
 class EpisodeList extends Component {
 
   state = {
-    episodes: []
+    episodes: [],
+    currentPage: 0
   }
 
-  componentDidMount() {
-    let episodes = this.props.data.episodes
-    let sortArr = episodes.sort((a, b) => {
-      if (a.episode_id > b.episode_id) {
-        return -1
-      } else {
-        return 1
-      }
-    })
+  async componentDidMount() {
+    const {data} = await axios.get(`/api/episodeList?page=${this.state.currentPage}`)
+
     this.setState({
-      episodes: sortArr
+      episodes: data.episodes
     })
   }
 
@@ -31,16 +26,17 @@ class EpisodeList extends Component {
     return (
       <>
         <div className="EpisodeList">
-          {<div className="episode-list-hold">
-            <h1>All Episodes: </h1>
-            {this.state.episodes.map(element => {
-              if (element.episodenumber) {
-                return <NumberedEpisodeList key={element.episode_id} element={element} />
-              } else {
-                return <SpecialEpisodeList key={element.episode_id} element={element} />
-              }
-            })}
-          </div>}
+          {this.state.episodes.length > 0 &&
+            <div className="episode-list-hold">
+              <h1>All Episodes: </h1>
+              {this.state.episodes.map(element => {
+                if (element.episodenumber) {
+                  return <NumberedEpisodeList key={element.episode_id} element={element} />
+                } else {
+                  return <SpecialEpisodeList key={element.episode_id} element={element} />
+                }
+              })}
+            </div>}
         </div>
       </>
     )
