@@ -1,0 +1,1 @@
+select episode_id, episodenumber, title from episodes

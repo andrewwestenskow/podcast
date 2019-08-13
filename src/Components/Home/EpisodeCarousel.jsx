@@ -27,14 +27,14 @@ const EpisodeCarousel = (props) => {
           return <div
             className='slide-hold'
             key={element.episode_id}>
-            <img src={element.details.poster} alt="" />
+            <img src={element.poster} alt="" />
             <h1>
               {element.title}
             </h1>
-            {element.details.w && 
+            {element.w && 
             <div className="home-westenscale-hold">
-              <h4>On the Westenscale: {element.details.w}</h4>
-              {element.details.w >= 9 && <img src={fire} alt='fire'/>}
+              <h4>On the Westenscale: {element.w}</h4>
+              {element.w >= 9 && <img src={fire} alt='fire'/>}
             </div>}
             <Link to={`/episodes/${element.episode_id}`}>
               <div>

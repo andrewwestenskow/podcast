@@ -13,33 +13,12 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    let scale = await axios.get('/api/westenscale')
-    scale.data.sort((a, b) => {
-      if (a.w < b.w) {
-        return 1
-      } else {
-        return -2
-      }
-    }).splice(19, Infinity)
-
-    let episodes = [...this.props.data.episodes]
-    let fiveEpisodesIndex = []
-
-    while (fiveEpisodesIndex.length < 5) {
-      let num = Math.floor(Math.random() * episodes.length - 1)
-      if (fiveEpisodesIndex.indexOf(num) === -1) {
-        fiveEpisodesIndex.push(num)
-      }
-    }
-
-    let fiveEpisodes = episodes.filter((element, index) => {
-      return fiveEpisodesIndex.includes(index)
-    })
+    let {data} = await axios.get('/api/home')
 
     this.setState({
-      scale: scale.data,
+      scale: data.scale,
       loading: false,
-      fiveEpisodes
+      fiveEpisodes: data.randomToSend
     })
   }
 

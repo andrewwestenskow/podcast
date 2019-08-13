@@ -1,37 +1,50 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
 import NumberedEpisodeList from './NumberedEpisodeList'
 import SpecialEpisodeList from './SpecialEpisodeList'
 
 
-const EpisodeList = (props) => {
+class EpisodeList extends Component {
 
-  let episodes = props.data.episodes
-  let sortArr = episodes.sort((a, b) => {
-    if (a.episode_id > b.episode_id) {
-      return -1
-    } else {
-      return 1
-    }
-  })
+  state = {
+    episodes: []
+  }
 
-  return (
-    <>
-      <div className="EpisodeList">
-        <div className="episode-list-hold">
-          <h1>All Episodes: </h1>
-          {sortArr.map(element => {
-            if (element.episodenumber) {
-              return <NumberedEpisodeList key={element.episode_id} element={element}/>
-            } else {
-              return <SpecialEpisodeList key={element.episode_id} element={element}/>
-            }
-            
-          })}
+  componentDidMount() {
+    let episodes = this.props.data.episodes
+    let sortArr = episodes.sort((a, b) => {
+      if (a.episode_id > b.episode_id) {
+        return -1
+      } else {
+        return 1
+      }
+    })
+    this.setState({
+      episodes: sortArr
+    })
+  }
+
+
+
+  render() {
+    return (
+      <>
+        <div className="EpisodeList">
+          {<div className="episode-list-hold">
+            <h1>All Episodes: </h1>
+            {this.state.episodes.map(element => {
+              if (element.episodenumber) {
+                return <NumberedEpisodeList key={element.episode_id} element={element} />
+              } else {
+                return <SpecialEpisodeList key={element.episode_id} element={element} />
+              }
+            })}
+          </div>}
         </div>
-      </div>
-    </>
-  )
+      </>
+    )
+  }
 }
 
 function mapStateToProps(state) {
