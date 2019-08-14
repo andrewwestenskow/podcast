@@ -63,7 +63,8 @@ class AddSpecialEpisode extends Component {
   searchMovies = async (e) => {
     e.preventDefault()
     this.setState({
-      searching: true
+      searching: true,
+      resultIndex: 0
     })
     let searchString = this.state.movieSearch.split(' ').join('+')
     let results = await axios.get(`/movies?searchString=${searchString}`)
