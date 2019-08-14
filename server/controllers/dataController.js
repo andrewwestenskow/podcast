@@ -82,7 +82,7 @@ module.exports ={
 
   fetchEpisodeList: async (req, res) => {
     const db = req.app.get('db')
-    const {page} = req.query
+    let {page} = req.query
 
     let episodes = await db.getEpisodes()
 
@@ -99,6 +99,10 @@ module.exports ={
 
     for(let i = 0; i <numPages; i++){
       pages.push(episodes.splice(0, 10))
+    }
+
+    if(+page > numPages || +page < 0 || Number.isNaN(+page)){
+      page = (numPages - 1)
     }
 
     let toSend = pages[page].map(element => {

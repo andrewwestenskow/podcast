@@ -51,7 +51,7 @@ class Header extends Component {
                 <h1 className='navlink'>About</h1>
               </Link>
               <div className='dropdown'>
-                <Link to='/episodes/list'>
+                <Link to='/episodes/list/?page=1'>
                   <h1 className='navlink'>
                     Episodes
               </h1>
@@ -65,7 +65,7 @@ class Header extends Component {
                       <div className="white-line"></div>
                     </Link>
                   ))}
-                  <Link to='/episodes/list'>
+                  <Link to='/episodes/list?page=1'>
                     <h1 className='navlink'>
                       All episodes...
                   </h1>

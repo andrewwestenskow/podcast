@@ -1,22 +1,36 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import NumberedEpisodeList from './NumberedEpisodeList'
 import SpecialEpisodeList from './SpecialEpisodeList'
 import axios from 'axios';
+import queryString from 'query-string'
 
 
 class EpisodeList extends Component {
 
   state = {
     episodes: [],
-    currentPage: 0
+    currentPage: null
   }
 
-  async componentDidMount() {
-    const {data} = await axios.get(`/api/episodeList?page=${this.state.currentPage}`)
+  componentDidMount() {
+    this.getList()
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps.location.search !== this.props.location.search){
+      this.getList()
+    }
+  }
+
+  getList = async () => {
+    let {page} = queryString.parse(this.props.location.search)
+    
+    const {data} = await axios.get(`/api/episodeList?page=${+page - 1}`)
 
     this.setState({
-      episodes: data.episodes
+      episodes: data.episodes,
+      currentPage: (+page - 1)
     })
   }
 
@@ -43,8 +57,6 @@ class EpisodeList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state
-}
 
-export default connect(mapStateToProps)(EpisodeList)
+
+export default withRouter(EpisodeList)
