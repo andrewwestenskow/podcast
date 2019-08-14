@@ -84,9 +84,13 @@ class AuthDashboard extends Component {
 
   nextMovie = () => {
     let num = this.state.displayNumber
-    this.setState({
-      displayNumber: num += 1
-    })
+    if(num === this.state.results.length - 1){
+      alert('No more movies')
+    } else {
+      this.setState({
+        displayNumber: num += 1
+      })
+    }
   }
 
   addToDb = (e) => {
