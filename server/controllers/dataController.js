@@ -115,7 +115,8 @@ module.exports ={
         player: newDetails.player,
         author: newDetails.author,
         review: newDetails.review,
-        poster: newDetails.poster
+        poster: newDetails.poster,
+        summary: newDetails.summary
       }
     })
 
