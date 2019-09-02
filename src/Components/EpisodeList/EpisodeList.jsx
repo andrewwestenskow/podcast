@@ -15,11 +15,13 @@ class EpisodeList extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0,0)
     this.getList()
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.location.search !== this.props.location.search) {
+      window.scrollTo(0,0)
       this.getList()
     }
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import EpisodeCarousel from './EpisodeCarousel'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
 class Home extends Component {
@@ -13,7 +14,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    let {data} = await axios.get('/api/home')
+    let { data } = await axios.get('/api/home')
 
     this.setState({
       scale: data.scale,
@@ -48,13 +49,15 @@ class Home extends Component {
             <div className="westenscale-hold">
               {this.state.loading ? <div>loading</div> :
                 <div>
-                <h1>THE WESTENSCALE</h1>
-                <div className='black-line'></div>
-                <ul>
-                  {this.state.scale.map(element => (
-                    <li key={element.westenscale_id}>{element.title} - {element.w}</li>
-                  ))}
-                </ul>
+                  <h1>THE WESTENSCALE</h1>
+                  <div className='black-line'></div>
+                  <ul>
+                    {this.state.scale.map(element => {
+                      return <Link style={{color: 'black'}} key={element.westenscale_id} to={`/episodes/${element.episode_id}`}>
+                        <li >{element.title} - {element.w}</li>
+                      </Link>
+                    })}
+                  </ul>
                 </div>}
             </div>
           </section>

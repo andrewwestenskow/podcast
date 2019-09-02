@@ -13,6 +13,7 @@ import BlogListHold from './Components/Blog/BlogListHold'
 import NewBlog from './Components/Admin/NewBlog';
 import EditBlog from './Components/Admin/EditBlog'
 import Blog from './Components/Blog/Blog'
+import About from './Components/About/About'
 
 export default(
   <Switch>
@@ -31,6 +32,7 @@ export default(
           <Route path = '/episodes/:episode_id' component={EpisodeInterceptor}/>
           <Route exact path='/blog' component={BlogListHold}/>
           <Route path='/blog/:id' component={Blog}/>
+          <Route exact path='/about' component={About}/>
         </Switch>
       </Header>
     )}/>

@@ -3,7 +3,8 @@
   min-height: calc(100vh - 175px);
   display: flex;
   justify-content: center;
-  background: $neutral
+  background: $neutral;
+  scroll-behavior: smooth;
 }
 
 .episode-list-hold{

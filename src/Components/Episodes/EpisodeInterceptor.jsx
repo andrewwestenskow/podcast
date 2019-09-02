@@ -14,11 +14,13 @@ class EpisodeInterceptor extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0,0)
     this.fetchEpisode()
   }
 
   componentDidUpdate(prevProps){
     if(prevProps.match.params.episode_id !== this.props.match.params.episode_id){
+      window.scrollTo(0,0)
       this.fetchEpisode()
     }
   }
